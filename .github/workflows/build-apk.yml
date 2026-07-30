@@ -38,6 +38,18 @@ jobs:
             echo "No build.gradle(.kts) found" && exit 1
           fi
 
+      - name: Enable core library desugaring (required by flutter_local_notifications)
+        run: |
+          if [ -f android/app/build.gradle.kts ]; then
+            sed -i '/compileOptions {/a\        isCoreLibraryDesugaringEnabled = true' android/app/build.gradle.kts
+            sed -i '/^dependencies {/a\    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")' android/app/build.gradle.kts
+          elif [ -f android/app/build.gradle ]; then
+            sed -i '/compileOptions {/a\        coreLibraryDesugaringEnabled true' android/app/build.gradle
+            sed -i '/^dependencies {/a\    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.1.4"' android/app/build.gradle
+          fi
+          echo "--- build.gradle(.kts) after patch ---"
+          cat android/app/build.gradle.kts 2>/dev/null || cat android/app/build.gradle
+
       - name: Build APK
         run: flutter build apk --release
 
