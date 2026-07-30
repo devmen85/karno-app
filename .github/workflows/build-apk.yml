@@ -18,15 +18,13 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Generate platform folders (android/ios)
-        run: flutter create . --platforms=android --project-name woocer_app --overwrite
+      - name: Generate platform folders (android) safely
+        run: |
+          flutter create /tmp/scaffold --platforms=android --project-name woocer_app
+          cp -r /tmp/scaffold/android ./android
 
       - name: Debug - list android folder
         run: |
-          echo "Contents of repo root:"
-          ls -la
-          echo "Contents of android/ (if exists):"
-          ls -la android/ 2>&1 || echo "android/ does not exist"
           echo "Contents of android/app/ (if exists):"
           ls -la android/app/ 2>&1 || echo "android/app/ does not exist"
 
