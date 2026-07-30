@@ -19,7 +19,6 @@ dependencies:
   flutter_local_notifications: ^17.1.2  # New-order notifications
   audioplayers: ^6.0.0             # Custom alarm sound for new orders
   mobile_scanner: ^5.1.1           # QR code scanner for API key setup
-  workmanager: ^0.5.2              # Periodic background polling for new orders
 
 dev_dependencies:
   flutter_test:
