@@ -1,0 +1,30 @@
+name: woocer_app
+description: "WooCommerce Product Manager - connects to any WooCommerce store via REST API"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  dio: ^5.4.0                     # HTTP client for WooCommerce REST API
+  shared_preferences: ^2.2.2      # Store site URL + API keys locally
+  cached_network_image: ^3.3.1    # Product image loading/caching
+  provider: ^6.1.1                # State management
+  image_picker: ^1.0.7            # Upload product photos
+  intl: ^0.19.0                   # Currency/number formatting
+  flutter_local_notifications: ^17.1.2  # New-order notifications
+  audioplayers: ^6.0.0             # Custom alarm sound for new orders
+  mobile_scanner: ^5.1.1           # QR code scanner for API key setup
+  workmanager: ^0.5.2              # Periodic background polling for new orders
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
